@@ -67,6 +67,10 @@ function wpforo_seo_clear(){
 			global $aiosp;
 			remove_action('wp_head',array($aiosp,'wp_head'));
 		}
+	    if ( defined('RANK_MATH_FILE') ) { // Rank Math SEO
+	      remove_all_actions( 'rank_math/head' );
+	      add_filter( 'rank_math/frontend/remove_credit_notice', '__return_true' );
+	    }
 		remove_action('wp_head','rel_canonical');
 		remove_action('wp_head','index_rel_link');
 		remove_action('wp_head','start_post_rel_link');
